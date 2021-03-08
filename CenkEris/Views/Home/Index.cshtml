@@ -1,0 +1,73 @@
+﻿@using CenkEris.Models
+@model List<Root>
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Album example</h1>
+        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+        <p>
+            <a href="@this.Url.Action("Create")" class="btn btn-primary my-2">Create User</a>
+        </p>
+    </div>
+</section>
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            <div class="row">
+
+
+                @foreach (var x in item.data)
+                {
+
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="@x.avatar" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">@x.first_name @x.last_name </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="@this.Url.Action("View",new {id=x.id })" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a href="@this.Url.Action("Edit",new {id=x.id })" class="btn btn-sm btn-outline-secondary">Edit</a>
+
+                                        <a href="@this.Url.Action("Delete",new {id=x.id })" class="btn btn-sm btn-outline-secondary" onclick="return confirm('Are you sure to delete? :@x.first_name @x.last_name')">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="container">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        @for (int i = 1; i < item.total_pages + 1; i++)
+                        {
+                            @if (ViewBag.Page == i)
+                            {
+                                <li class="page-item active"><a class="page-link" href="@this.Url.Action("Index", new {page=i })">@i</a></li>
+
+                            }
+                            else
+                            {
+                                <li class="page-item"><a class="page-link" href="@this.Url.Action("Index", new {page=i })">@i</a></li>
+                            }
+                        }
+                    </ul>
+                </nav>
+
+
+            </div>
+        }
+
+
+    </div>
+</div>

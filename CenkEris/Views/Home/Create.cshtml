@@ -1,0 +1,58 @@
+﻿@model CenkEris.ViewModels.AddViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/editform.css" rel="stylesheet" />
+@using (Html.BeginForm())
+{
+ 
+    <div class="container register-form">
+        <div class="form">
+            <div class="note">
+                <p>CREATE</p>
+            </div>
+
+            <div class="form-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <p>Ad</p>
+                            @Html.TextBoxFor(x => x.first_name, new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+                            <p>E-mail adresi</p>
+                            @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <p>Soyad</p>
+                            @Html.TextBoxFor(x => x.last_name, new { @class = "form-control" })
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <p>Resim</p>
+                            @Html.TextBoxFor(x => x.avatar, new { @class = "form-control", type = "file" })
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <input type="submit" class="btnSubmit" value="Kaydet">
+                <div class="text-danger">@Html.ValidationSummary()</div>
+            </div>
+        </div>
+    </div>
+}
+
